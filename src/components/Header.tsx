@@ -20,7 +20,7 @@ const Header = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-3 hover:scale-105 transition-transform">
               <img 
-                src="/public/logo.png" 
+                src="/logo.png" 
                 alt="RunTribe Logo" 
                 className="h-10 w-10 rounded-lg"
               />
