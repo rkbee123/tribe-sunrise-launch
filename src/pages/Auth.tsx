@@ -1,11 +1,11 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -17,6 +17,16 @@ const Auth = () => {
   const { signUp, signIn, user } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  // Check if this is a redirect from email verification
+  useEffect(() => {
+    const type = searchParams.get('type');
+    if (type === 'signup') {
+      // User clicked the verification link, redirect to success page
+      navigate('/success');
+    }
+  }, [searchParams, navigate]);
 
   // Redirect if already logged in
   if (user) {
@@ -33,26 +43,30 @@ const Auth = () => {
       if (isSignUp) {
         if (!name.trim()) {
           toast({
-            title: "Bruh! 🤦‍♂️",
-            description: "We need your name to know what to call ya!",
+            title: "Name Required",
+            description: "Please enter your name to continue",
             variant: "destructive",
           });
           setLoading(false);
           return;
         }
+        
+        // Set redirect URL to auth page with success parameter
+        const redirectUrl = `${window.location.origin}/auth?type=signup`;
+        
         ({ error } = await signUp(email, password, name));
         if (!error) {
           toast({
-            title: "Welcome to the tribe! 🎉",
-            description: "Check your email to verify your account, then come back and sign in!",
+            title: "Check Your Email",
+            description: "We've sent you a verification link. Click it to complete your registration!",
           });
         }
       } else {
         ({ error } = await signIn(email, password));
         if (!error) {
           toast({
-            title: "You're in! 🔥",
-            description: "Ready to run with the squad?",
+            title: "Welcome Back!",
+            description: "Ready to run with the community?",
           });
           navigate('/');
         }
@@ -60,15 +74,15 @@ const Auth = () => {
 
       if (error) {
         toast({
-          title: "Oops! Something went wrong 😅",
+          title: "Something went wrong",
           description: error.message,
           variant: "destructive",
         });
       }
     } catch (error) {
       toast({
-        title: "Technical difficulties 🤖",
-        description: "Try again in a sec!",
+        title: "Error",
+        description: "Please try again later",
         variant: "destructive",
       });
     } finally {
@@ -80,23 +94,28 @@ const Auth = () => {
     <div className="min-h-screen bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 flex items-center justify-center p-4">
       <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-8 w-full max-w-md shadow-2xl border border-white/20">
         <div className="text-center mb-8">
+          <img 
+            src="/images/runtribe-logo.png" 
+            alt="RunTribe Logo" 
+            className="h-16 w-16 mx-auto mb-4 rounded-2xl"
+          />
           <h1 className="text-3xl font-black bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent mb-2">
-            {isSignUp ? "Join the Squad! 🏃‍♂️" : "Welcome Back! 👋"}
+            {isSignUp ? "Join RunTribe" : "Welcome Back"}
           </h1>
           <p className="text-gray-600">
-            {isSignUp ? "Ready to level up your running game?" : "Time to get back to running!"}
+            {isSignUp ? "Ready to start your running journey?" : "Let's get back to running!"}
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {isSignUp && (
             <div>
-              <Label htmlFor="name" className="text-gray-700 font-semibold">Your Name *</Label>
+              <Label htmlFor="name" className="text-gray-700 font-semibold">Full Name *</Label>
               <Input
                 id="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="What should we call you?"
+                placeholder="Enter your full name"
                 className="mt-2 border-gray-300 focus:border-orange-500 focus:ring-orange-500 rounded-xl"
                 required
               />
@@ -104,7 +123,7 @@ const Auth = () => {
           )}
           
           <div>
-            <Label htmlFor="email" className="text-gray-700 font-semibold">Email *</Label>
+            <Label htmlFor="email" className="text-gray-700 font-semibold">Email Address *</Label>
             <Input
               id="email"
               type="email"
@@ -123,7 +142,7 @@ const Auth = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Make it secure! 🔐"
+              placeholder="Enter a secure password"
               className="mt-2 border-gray-300 focus:border-orange-500 focus:ring-orange-500 rounded-xl"
               required
             />
@@ -134,7 +153,7 @@ const Auth = () => {
             disabled={loading}
             className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold py-4 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           >
-            {loading ? "Loading... ⏳" : isSignUp ? "Join RunTribe! 🚀" : "Let's Go! 🏃‍♂️"}
+            {loading ? "Please wait..." : isSignUp ? "Create Account" : "Sign In"}
           </Button>
         </form>
         
@@ -143,7 +162,7 @@ const Auth = () => {
             onClick={() => setIsSignUp(!isSignUp)}
             className="text-orange-500 hover:text-orange-600 font-semibold transition-colors"
           >
-            {isSignUp ? "Already have an account? Sign in! 👈" : "New here? Join the tribe! 👉"}
+            {isSignUp ? "Already have an account? Sign in" : "New to RunTribe? Create account"}
           </button>
         </div>
       </div>

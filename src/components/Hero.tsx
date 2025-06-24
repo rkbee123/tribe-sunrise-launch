@@ -34,36 +34,30 @@ const Hero = () => {
       </div>
       
       {/* Content */}
-      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto pt-20">
         <div className="animate-fade-up">
           <div className="mb-8">
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-6 leading-tight tracking-tight">
               RUN.<br/>
               <span className="text-yellow-200 animate-pulse">VIBE.</span><br/>
-              <span className="text-orange-200">SLAY.</span>
+              <span className="text-orange-200">CONNECT.</span>
             </h1>
           </div>
           
           <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 mb-8 border border-white/20 shadow-2xl">
-            <div className="flex justify-center space-x-4 mb-4 text-4xl">
-              <span className="animate-bounce">🔥</span>
-              <span className="animate-bounce" style={{animationDelay: '0.2s'}}>💪</span>
-              <span className="animate-bounce" style={{animationDelay: '0.4s'}}>⚡</span>
-            </div>
-            
             <p className="text-xl sm:text-2xl text-white mb-4 font-bold uppercase tracking-wide">
-              Chennai's Most Epic Running Squad
+              Chennai's Premier Running Community
             </p>
             
             <p className="text-lg text-white/90 mb-6 max-w-3xl mx-auto leading-relaxed">
-              Join the coolest running community in Chennai! Every Saturday at 6 AM, 
-              we meet at Thiruvanmiyur Beach to start the day with energy, vibes, and good people. 
-              It's not just fitness - it's a whole mood! 💯
+              Join the most vibrant running community in Chennai! Every Saturday at 6 AM, 
+              we gather at Thiruvanmiyur Beach to start the day with energy, motivation, and great company. 
+              It's more than fitness - it's about building connections and pushing boundaries together.
             </p>
             
             <div className="inline-flex items-center bg-gradient-to-r from-yellow-400 to-orange-400 text-black px-8 py-4 rounded-full font-bold text-lg shadow-xl">
               <span className="animate-pulse mr-2">🚀</span>
-              FIRST SESSION COMING SOON
+              FIRST SESSION LAUNCHING SOON
               <span className="animate-pulse ml-2">🚀</span>
             </div>
           </div>
@@ -75,7 +69,7 @@ const Hero = () => {
                 size="lg" 
                 className="bg-white text-black hover:bg-gray-100 border-0 px-12 py-6 text-xl font-bold rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-2"
               >
-                Complete Registration 🎯
+                Complete Registration
               </Button>
             ) : (
               <Link to="/auth">
@@ -83,7 +77,7 @@ const Hero = () => {
                   size="lg" 
                   className="bg-white text-black hover:bg-gray-100 border-0 px-12 py-6 text-xl font-bold rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-2"
                 >
-                  Join the Squad ⚡
+                  Join the Community
                 </Button>
               </Link>
             )}
@@ -94,17 +88,8 @@ const Hero = () => {
               onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
               className="border-3 border-white/50 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 px-12 py-6 text-xl font-bold rounded-full transition-all duration-300 hover:border-white hover:scale-105"
             >
-              Learn More 🤔
+              Learn More
             </Button>
-          </div>
-          
-          {/* Fun Elements */}
-          <div className="mt-12 flex justify-center space-x-8 text-2xl">
-            <span className="animate-spin">🌟</span>
-            <span className="animate-bounce">🏃‍♀️</span>
-            <span className="animate-pulse">❤️</span>
-            <span className="animate-bounce">🏃‍♂️</span>
-            <span className="animate-spin">⭐</span>
           </div>
         </div>
       </div>
