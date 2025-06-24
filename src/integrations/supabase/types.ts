@@ -9,7 +9,96 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          created_at: string
+          fitness_level: string | null
+          id: string
+          interests: string | null
+          location: string | null
+          name: string
+          occupation: string | null
+          phone: string | null
+          preferred_time: string | null
+          skills: string | null
+          updated_at: string
+          whatsapp_joined: boolean | null
+        }
+        Insert: {
+          created_at?: string
+          fitness_level?: string | null
+          id: string
+          interests?: string | null
+          location?: string | null
+          name: string
+          occupation?: string | null
+          phone?: string | null
+          preferred_time?: string | null
+          skills?: string | null
+          updated_at?: string
+          whatsapp_joined?: boolean | null
+        }
+        Update: {
+          created_at?: string
+          fitness_level?: string | null
+          id?: string
+          interests?: string | null
+          location?: string | null
+          name?: string
+          occupation?: string | null
+          phone?: string | null
+          preferred_time?: string | null
+          skills?: string | null
+          updated_at?: string
+          whatsapp_joined?: boolean | null
+        }
+        Relationships: []
+      }
+      registrations: {
+        Row: {
+          created_at: string
+          email: string
+          fitness_level: string | null
+          id: string
+          interests: string | null
+          location: string | null
+          name: string
+          occupation: string | null
+          phone: string | null
+          preferred_time: string | null
+          skills: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          fitness_level?: string | null
+          id?: string
+          interests?: string | null
+          location?: string | null
+          name: string
+          occupation?: string | null
+          phone?: string | null
+          preferred_time?: string | null
+          skills?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          fitness_level?: string | null
+          id?: string
+          interests?: string | null
+          location?: string | null
+          name?: string
+          occupation?: string | null
+          phone?: string | null
+          preferred_time?: string | null
+          skills?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
