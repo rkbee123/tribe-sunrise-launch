@@ -30,7 +30,7 @@ const Auth = () => {
 
   const handleRegistration = async (userData: any) => {
     try {
-      const response = await fetch("http://localhost:5678/webhook/runtribe", {
+      const response = await fetch("https://forzio.app.n8n.cloud/webhook-test/RUNTRIBE", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

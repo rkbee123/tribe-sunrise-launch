@@ -36,7 +36,7 @@ const JoinTribe = () => {
     setIsLoading(true);
     
     try {
-      await fetch("http://localhost:5678/webhook/runtribe", {
+      await fetch("https://forzio.app.n8n.cloud/webhook-test/RUNTRIBE", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -67,6 +67,16 @@ const JoinTribe = () => {
         title: "🔥 You're in! See you Saturday.",
         description: "Check your WhatsApp for details.",
       });
+      
+      // Clear form even on error
+      setRegForm({
+        name: "",
+        email: "",
+        phone: "",
+        fitnessLevel: "",
+        goals: "",
+        availability: ""
+      });
     } finally {
       setIsLoading(false);
     }
@@ -77,7 +87,7 @@ const JoinTribe = () => {
     setIsLoading(true);
     
     try {
-      await fetch("http://localhost:5678/webhook/runtribe", {
+      await fetch("https://forzio.app.n8n.cloud/webhook-test/RUNTRIBE", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -108,6 +118,17 @@ const JoinTribe = () => {
       toast({
         title: "🔥 Buddy Search Submitted!",
         description: "We'll find you the perfect running partner.",
+      });
+      
+      // Clear form even on error
+      setBuddyForm({
+        name: "",
+        email: "",
+        age: "",
+        fitnessLevel: "",
+        preferredPace: "",
+        interests: "",
+        goals: ""
       });
     } finally {
       setIsLoading(false);
