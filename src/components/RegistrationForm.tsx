@@ -35,7 +35,7 @@ const RegistrationForm = () => {
 
     try {
       const response = await fetch("https://forzio.app.n8n.cloud/webhook-test/RUNTRIBE", {
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
