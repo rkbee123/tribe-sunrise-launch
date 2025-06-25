@@ -10,14 +10,10 @@ const Hero = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
 
-  const scrollToRegistration = () => {
-    const element = document.getElementById('registration');
-    element?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   const handleJoinTribe = async () => {
     if (user) {
-      scrollToRegistration();
+      // If user is logged in, redirect to join page
+      window.location.href = '/join';
       return;
     }
 
@@ -44,13 +40,13 @@ const Hero = () => {
       
       // Small delay for UX, then redirect
       setTimeout(() => {
-        window.location.href = '/auth?type=signup';
+        window.location.href = '/join';
       }, 1000);
       
     } catch (error) {
       console.error("Error:", error);
       // Still redirect even if webhook fails
-      window.location.href = '/auth?type=signup';
+      window.location.href = '/join';
     } finally {
       setIsLoading(false);
     }
@@ -109,17 +105,18 @@ const Hero = () => {
               size="lg" 
               className="sigma-button text-2xl sm:text-3xl py-12 px-20 w-full sm:w-auto"
             >
-              {isLoading ? "JOINING..." : (user ? "COMPLETE REGISTRATION" : "JOIN THE TRIBE 🔥")}
+              {isLoading ? "JOINING..." : "JOIN THE TRIBE 🔥"}
             </Button>
             
-            <Button 
-              variant="outline" 
-              size="lg"
-              onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-              className="border-4 border-orange-500 bg-transparent text-white hover:bg-orange-500 hover:text-black px-20 py-12 text-2xl sm:text-3xl font-black rounded-3xl transition-all duration-300 hover:scale-105 sigma-heading w-full sm:w-auto"
-            >
-              LEARN MORE
-            </Button>
+            <Link to="/about">
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="border-4 border-orange-500 bg-transparent text-white hover:bg-orange-500 hover:text-black px-20 py-12 text-2xl sm:text-3xl font-black rounded-3xl transition-all duration-300 hover:scale-105 sigma-heading w-full sm:w-auto"
+              >
+                LEARN MORE
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
