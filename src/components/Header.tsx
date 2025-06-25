@@ -13,19 +13,19 @@ const Header = () => {
   return (
     <>
       {/* Spacer to prevent content overlap */}
-      <div className="h-20"></div>
+      <div className="h-16"></div>
       
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-xl border-b border-gray-800 shadow-2xl">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-          <div className="flex items-center justify-between h-20">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-gray-800">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-3 hover:scale-105 transition-transform">
+            <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="/logo.png" 
                 alt="RunTribe Logo" 
-                className="h-10 w-10 rounded-lg"
+                className="h-8 w-8 rounded"
               />
-              <div className="text-2xl font-black sigma-heading bg-gradient-to-r from-orange-500 to-orange-400 bg-clip-text text-transparent">
+              <div className="text-lg font-bold sigma-heading text-orange-500">
                 RUNTRIBE
               </div>
             </Link>
@@ -34,27 +34,27 @@ const Header = () => {
             <nav className="hidden md:flex items-center space-x-6">
               <Link 
                 to="/" 
-                className={`text-gray-300 hover:text-orange-500 transition-all duration-300 font-medium text-sm uppercase tracking-wide hover:scale-105 px-3 py-2 rounded-full hover:bg-gray-900 ${
-                  location.pathname === '/' ? 'text-orange-500' : ''
+                className={`text-sm font-medium uppercase tracking-wide transition-colors hover:text-orange-500 ${
+                  location.pathname === '/' ? 'text-orange-500' : 'text-gray-300'
                 }`}
               >
                 Home
               </Link>
               <Link 
                 to="/about" 
-                className={`text-gray-300 hover:text-orange-500 transition-all duration-300 font-medium text-sm uppercase tracking-wide hover:scale-105 px-3 py-2 rounded-full hover:bg-gray-900 ${
-                  location.pathname === '/about' ? 'text-orange-500' : ''
+                className={`text-sm font-medium uppercase tracking-wide transition-colors hover:text-orange-500 ${
+                  location.pathname === '/about' ? 'text-orange-500' : 'text-gray-300'
                 }`}
               >
-                About Us
+                About
               </Link>
               <Link 
                 to="/join" 
-                className={`text-gray-300 hover:text-orange-500 transition-all duration-300 font-medium text-sm uppercase tracking-wide hover:scale-105 px-3 py-2 rounded-full hover:bg-gray-900 ${
-                  location.pathname === '/join' ? 'text-orange-500' : ''
+                className={`text-sm font-medium uppercase tracking-wide transition-colors hover:text-orange-500 ${
+                  location.pathname === '/join' ? 'text-orange-500' : 'text-gray-300'
                 }`}
               >
-                Join Tribe
+                Join
               </Link>
             </nav>
             
@@ -62,13 +62,14 @@ const Header = () => {
             <div className="hidden md:flex items-center space-x-3">
               {user ? (
                 <>
-                  <span className="text-gray-300 font-medium">
-                    Welcome back!
+                  <span className="text-gray-300 text-sm">
+                    Welcome!
                   </span>
                   <Button 
                     onClick={signOut}
                     variant="ghost" 
-                    className="text-gray-300 hover:text-orange-500 hover:bg-gray-900 transition-all duration-300 rounded-full"
+                    size="sm"
+                    className="text-gray-300 hover:text-orange-500"
                   >
                     Sign Out
                   </Button>
@@ -76,13 +77,13 @@ const Header = () => {
               ) : (
                 <>
                   <Link to="/auth">
-                    <Button variant="ghost" className="text-gray-300 hover:text-orange-500 hover:bg-gray-900 transition-all duration-300 rounded-full">
+                    <Button variant="ghost" size="sm" className="text-gray-300 hover:text-orange-500">
                       Login
                     </Button>
                   </Link>
                   <Link to="/join">
-                    <Button className="sigma-button">
-                      Join Now
+                    <Button size="sm" className="sigma-button">
+                      Join
                     </Button>
                   </Link>
                 </>
@@ -92,21 +93,21 @@ const Header = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-full hover:bg-gray-900 transition-colors"
+              className="md:hidden p-2"
             >
-              {isMenuOpen ? <X className="h-6 w-6 text-white" /> : <Menu className="h-6 w-6 text-white" />}
+              {isMenuOpen ? <X className="h-5 w-5 text-white" /> : <Menu className="h-5 w-5 text-white" />}
             </button>
           </div>
 
           {/* Mobile Menu */}
           {isMenuOpen && (
-            <div className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-xl border-b border-gray-800 shadow-lg">
-              <div className="p-4 space-y-4">
+            <div className="md:hidden bg-black border-t border-gray-800">
+              <div className="p-4 space-y-3">
                 <nav className="space-y-2">
                   <Link 
                     to="/" 
-                    className={`block text-gray-300 hover:text-orange-500 transition-all duration-300 font-medium text-sm uppercase tracking-wide px-3 py-2 rounded-full hover:bg-gray-900 ${
-                      location.pathname === '/' ? 'text-orange-500' : ''
+                    className={`block text-sm font-medium uppercase tracking-wide py-2 ${
+                      location.pathname === '/' ? 'text-orange-500' : 'text-gray-300'
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -114,34 +115,35 @@ const Header = () => {
                   </Link>
                   <Link 
                     to="/about" 
-                    className={`block text-gray-300 hover:text-orange-500 transition-all duration-300 font-medium text-sm uppercase tracking-wide px-3 py-2 rounded-full hover:bg-gray-900 ${
-                      location.pathname === '/about' ? 'text-orange-500' : ''
+                    className={`block text-sm font-medium uppercase tracking-wide py-2 ${
+                      location.pathname === '/about' ? 'text-orange-500' : 'text-gray-300'
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    About Us
+                    About
                   </Link>
                   <Link 
                     to="/join" 
-                    className={`block text-gray-300 hover:text-orange-500 transition-all duration-300 font-medium text-sm uppercase tracking-wide px-3 py-2 rounded-full hover:bg-gray-900 ${
-                      location.pathname === '/join' ? 'text-orange-500' : ''
+                    className={`block text-sm font-medium uppercase tracking-wide py-2 ${
+                      location.pathname === '/join' ? 'text-orange-500' : 'text-gray-300'
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Join Tribe
+                    Join
                   </Link>
                 </nav>
                 
-                <div className="pt-4 border-t border-gray-800 space-y-2">
+                <div className="pt-3 border-t border-gray-800 space-y-2">
                   {user ? (
                     <>
-                      <div className="text-gray-300 font-medium px-3">
-                        Welcome back!
+                      <div className="text-gray-300 text-sm py-2">
+                        Welcome!
                       </div>
                       <Button 
                         onClick={signOut}
                         variant="ghost" 
-                        className="w-full text-gray-300 hover:text-orange-500 hover:bg-gray-900 transition-all duration-300 rounded-full"
+                        size="sm"
+                        className="w-full text-gray-300 hover:text-orange-500"
                       >
                         Sign Out
                       </Button>
@@ -149,13 +151,13 @@ const Header = () => {
                   ) : (
                     <>
                       <Link to="/auth" className="block" onClick={() => setIsMenuOpen(false)}>
-                        <Button variant="ghost" className="w-full text-gray-300 hover:text-orange-500 hover:bg-gray-900 transition-all duration-300 rounded-full">
+                        <Button variant="ghost" size="sm" className="w-full text-gray-300 hover:text-orange-500">
                           Login
                         </Button>
                       </Link>
                       <Link to="/join" className="block" onClick={() => setIsMenuOpen(false)}>
-                        <Button className="w-full sigma-button">
-                          Join Now
+                        <Button size="sm" className="w-full sigma-button">
+                          Join
                         </Button>
                       </Link>
                     </>

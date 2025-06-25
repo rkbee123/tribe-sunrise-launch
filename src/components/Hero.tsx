@@ -12,7 +12,6 @@ const Hero = () => {
 
   const handleJoinTribe = async () => {
     if (user) {
-      // If user is logged in, redirect to join page
       window.location.href = '/join';
       return;
     }
@@ -20,7 +19,6 @@ const Hero = () => {
     setIsLoading(true);
     
     try {
-      // Send basic join intent to webhook
       await fetch("http://localhost:5678/webhook/runtribe", {
         method: "POST",
         headers: {
@@ -34,18 +32,16 @@ const Hero = () => {
       });
 
       toast({
-        title: "🚀 LET'S GET YOU STARTED!",
+        title: "Let's get started!",
         description: "Redirecting you to join the tribe...",
       });
       
-      // Small delay for UX, then redirect
       setTimeout(() => {
         window.location.href = '/join';
       }, 1000);
       
     } catch (error) {
       console.error("Error:", error);
-      // Still redirect even if webhook fails
       window.location.href = '/join';
     } finally {
       setIsLoading(false);
@@ -53,71 +49,50 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0A0A0A] via-[#111111] to-black">
-      {/* Ultra Sigma Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-orange-500/20 rounded-full blur-xl animate-bounce pulse-orange" style={{animationDelay: '0s', animationDuration: '3s'}}></div>
-        <div className="absolute top-40 right-20 w-48 h-48 bg-orange-500/10 rounded-full blur-2xl animate-bounce" style={{animationDelay: '1s', animationDuration: '4s'}}></div>
-        <div className="absolute bottom-32 left-20 w-24 h-24 bg-orange-500/25 rounded-full blur-lg animate-bounce pulse-orange" style={{animationDelay: '2s', animationDuration: '2.5s'}}></div>
-        <div className="absolute top-1/3 left-1/3 w-16 h-16 bg-orange-400/30 rounded-full blur-md animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-20 h-20 bg-orange-300/20 rounded-full blur-lg animate-pulse pulse-orange" style={{animationDelay: '1.5s'}}></div>
+    <section className="min-h-screen flex items-center justify-center bg-black">
+      <div className="text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto py-20">
+        <div className="mb-16">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold sigma-heading mb-8 leading-tight">
+            RUN.<br/>
+            <span className="text-orange-500">VIBE.</span><br/>
+            <span className="text-orange-500">CONNECT.</span>
+          </h1>
+        </div>
         
-        {/* Sigma glow effect */}
-        <div className="absolute inset-0 bg-gradient-radial from-orange-500/5 via-transparent to-transparent"></div>
-      </div>
-      
-      {/* Content */}
-      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-20">
-        <div className="animate-fade-up">
-          <div className="mb-16">
-            <h1 className="text-6xl sm:text-8xl lg:text-9xl xl:text-[12rem] font-black sigma-heading mb-12 leading-none">
-              RUN.<br/>
-              <span className="sigma-text-glow animate-pulse">VIBE.</span><br/>
-              <span className="text-orange-400 sigma-text-glow">CONNECT.</span>
-            </h1>
-          </div>
+        <div className="sigma-card mb-12 max-w-3xl mx-auto">
+          <p className="text-2xl sm:text-3xl font-bold sigma-heading mb-6 text-white">
+            CHENNAI'S ELITE RUNNING COMMUNITY
+          </p>
           
-          <div className="sigma-card p-8 sm:p-16 mb-16 sigma-glow max-w-5xl mx-auto">
-            <p className="text-3xl sm:text-4xl lg:text-5xl sigma-heading mb-8 text-white">
-              CHENNAI'S MOST ELITE RUNNING COMMUNITY
-            </p>
-            
-            <p className="text-xl sm:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed font-light">
-              Join the most <span className="text-orange-500 font-bold">POWERFUL</span> running community in Chennai! 
-              Every Saturday at 6 AM, we gather at Thiruvanmiyur Beach to start the day with 
-              <span className="text-orange-500 font-bold"> ENERGY</span>, 
-              <span className="text-orange-500 font-bold"> MOTIVATION</span>, and 
-              <span className="text-orange-500 font-bold"> UNSTOPPABLE VIBES</span>. 
-              This isn't just fitness - it's about building an empire of connections.
-            </p>
-            
-            <div className="inline-flex items-center bg-gradient-to-r from-orange-500 to-orange-600 text-black px-16 py-8 rounded-3xl font-black text-2xl sm:text-3xl shadow-2xl sigma-glow pulse-orange">
-              <span className="animate-pulse mr-4 text-3xl">🚀</span>
-              FIRST SESSION LAUNCHING SOON
-              <span className="animate-pulse ml-4 text-3xl">🚀</span>
-            </div>
-          </div>
+          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Join Chennai's most <span className="text-orange-500 font-semibold">powerful</span> running community! 
+            Every Saturday at 6 AM, we gather at Thiruvanmiyur Beach for energy, motivation, and connections.
+          </p>
           
-          <div className="flex flex-col sm:flex-row gap-8 justify-center items-center max-w-4xl mx-auto">
+          <div className="inline-flex items-center bg-orange-500 text-black px-8 py-3 rounded-md font-semibold text-lg">
+            <span className="mr-2">🚀</span>
+            FIRST SESSION LAUNCHING SOON
+            <span className="ml-2">🚀</span>
+          </div>
+        </div>
+        
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-2xl mx-auto">
+          <Button 
+            onClick={handleJoinTribe}
+            disabled={isLoading}
+            className="sigma-button text-lg px-8 py-3 w-full sm:w-auto"
+          >
+            {isLoading ? "JOINING..." : "JOIN THE TRIBE 🔥"}
+          </Button>
+          
+          <Link to="/about">
             <Button 
-              onClick={handleJoinTribe}
-              disabled={isLoading}
-              size="lg" 
-              className="sigma-button text-2xl sm:text-3xl py-12 px-20 w-full sm:w-auto"
+              variant="outline" 
+              className="border-2 border-orange-500 bg-transparent text-white hover:bg-orange-500 hover:text-black px-8 py-3 text-lg font-semibold rounded-md transition-colors w-full sm:w-auto"
             >
-              {isLoading ? "JOINING..." : "JOIN THE TRIBE 🔥"}
+              LEARN MORE
             </Button>
-            
-            <Link to="/about">
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-4 border-orange-500 bg-transparent text-white hover:bg-orange-500 hover:text-black px-20 py-12 text-2xl sm:text-3xl font-black rounded-3xl transition-all duration-300 hover:scale-105 sigma-heading w-full sm:w-auto"
-              >
-                LEARN MORE
-              </Button>
-            </Link>
-          </div>
+          </Link>
         </div>
       </div>
     </section>

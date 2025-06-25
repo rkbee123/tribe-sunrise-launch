@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -119,249 +118,240 @@ const JoinTribe = () => {
     <div className="min-h-screen bg-black">
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0A0A0A] via-[#111111] to-black">
-        {/* Background Effects */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-orange-500/20 rounded-full blur-xl animate-bounce pulse-orange"></div>
-          <div className="absolute bottom-32 right-20 w-48 h-48 bg-orange-500/10 rounded-full blur-2xl animate-bounce"></div>
-        </div>
-        
-        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto pt-20 pb-20">
-          <div className="animate-fade-up">
-            <h1 className="text-6xl sm:text-8xl lg:text-9xl font-black sigma-heading mb-12 leading-none">
-              JOIN.<br/>
-              <span className="text-orange-400 sigma-text-glow">THE TRIBE.</span>
-            </h1>
-            
-            {/* Toggle Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 max-w-2xl mx-auto">
-              <Button
-                onClick={() => setIsRegistering(true)}
-                className={`sigma-button text-xl sm:text-2xl py-8 px-12 w-full sm:w-auto ${
-                  isRegistering ? 'opacity-100' : 'opacity-60 hover:opacity-80'
-                }`}
-              >
-                JOIN TRIBE 🚀
-              </Button>
-              <Button
-                onClick={() => setIsRegistering(false)}
-                className={`sigma-button text-xl sm:text-2xl py-8 px-12 w-full sm:w-auto ${
-                  !isRegistering ? 'opacity-100' : 'opacity-60 hover:opacity-80'
-                }`}
-              >
-                FIND TRIBE BRO 🤝
-              </Button>
-            </div>
+      <section className="min-h-screen flex items-center justify-center bg-black">
+        <div className="text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto py-20">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold sigma-heading mb-12 leading-tight">
+            JOIN.<br/>
+            <span className="text-orange-500">THE TRIBE.</span>
+          </h1>
+          
+          {/* Toggle Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-12 max-w-lg mx-auto">
+            <Button
+              onClick={() => setIsRegistering(true)}
+              className={`sigma-button px-6 py-2 text-base w-full sm:w-auto ${
+                isRegistering ? 'opacity-100' : 'opacity-60 hover:opacity-80'
+              }`}
+            >
+              JOIN TRIBE 🚀
+            </Button>
+            <Button
+              onClick={() => setIsRegistering(false)}
+              className={`sigma-button px-6 py-2 text-base w-full sm:w-auto ${
+                !isRegistering ? 'opacity-100' : 'opacity-60 hover:opacity-80'
+              }`}
+            >
+              FIND TRIBE BRO 🤝
+            </Button>
+          </div>
 
-            {/* Registration Form */}
-            {isRegistering && (
-              <div className="sigma-card p-8 sm:p-16 sigma-glow max-w-4xl mx-auto">
-                <h2 className="text-3xl sm:text-4xl font-black sigma-heading mb-8 text-orange-500">
-                  BECOME A TRIBE MEMBER
-                </h2>
-                
-                <form onSubmit={handleRegistrationSubmit} className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-white font-bold mb-2 sigma-heading text-sm">
-                        FULL NAME *
-                      </label>
-                      <Input
-                        type="text"
-                        value={regForm.name}
-                        onChange={(e) => setRegForm({...regForm, name: e.target.value})}
-                        className="sigma-input h-12 text-lg"
-                        placeholder="Your name"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-white font-bold mb-2 sigma-heading text-sm">
-                        EMAIL *
-                      </label>
-                      <Input
-                        type="email"
-                        value={regForm.email}
-                        onChange={(e) => setRegForm({...regForm, email: e.target.value})}
-                        className="sigma-input h-12 text-lg"
-                        placeholder="your@email.com"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-white font-bold mb-2 sigma-heading text-sm">
-                        PHONE NUMBER *
-                      </label>
-                      <Input
-                        type="tel"
-                        value={regForm.phone}
-                        onChange={(e) => setRegForm({...regForm, phone: e.target.value})}
-                        className="sigma-input h-12 text-lg"
-                        placeholder="+91 XXXXX XXXXX"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-white font-bold mb-2 sigma-heading text-sm">
-                        FITNESS LEVEL
-                      </label>
-                      <select
-                        value={regForm.fitnessLevel}
-                        onChange={(e) => setRegForm({...regForm, fitnessLevel: e.target.value})}
-                        className="sigma-input h-12 text-lg w-full"
-                      >
-                        <option value="">Select level</option>
-                        <option value="beginner">BEGINNER</option>
-                        <option value="intermediate">INTERMEDIATE</option>
-                        <option value="advanced">ADVANCED</option>
-                      </select>
-                    </div>
-                  </div>
-
+          {/* Registration Form */}
+          {isRegistering && (
+            <div className="sigma-card max-w-2xl mx-auto">
+              <h2 className="text-2xl font-bold sigma-heading mb-6 text-orange-500">
+                BECOME A TRIBE MEMBER
+              </h2>
+              
+              <form onSubmit={handleRegistrationSubmit} className="space-y-4">
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-white font-bold mb-2 sigma-heading text-sm">
-                      RUNNING GOALS
+                    <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                      FULL NAME *
                     </label>
-                    <textarea
-                      value={regForm.goals}
-                      onChange={(e) => setRegForm({...regForm, goals: e.target.value})}
-                      className="sigma-input h-24 text-lg w-full resize-none"
-                      placeholder="What do you want to achieve?"
+                    <Input
+                      type="text"
+                      value={regForm.name}
+                      onChange={(e) => setRegForm({...regForm, name: e.target.value})}
+                      className="sigma-input"
+                      placeholder="Your name"
+                      required
                     />
                   </div>
-
-                  <Button
-                    type="submit"
-                    disabled={isLoading}
-                    className="sigma-button text-2xl sm:text-3xl py-12 px-20 w-full"
-                  >
-                    {isLoading ? "JOINING..." : "JOIN THE TRIBE! 🚀"}
-                  </Button>
-                </form>
-              </div>
-            )}
-
-            {/* Find Tribe Bro Form */}
-            {!isRegistering && (
-              <div className="sigma-card p-8 sm:p-16 sigma-glow max-w-4xl mx-auto">
-                <h2 className="text-3xl sm:text-4xl font-black sigma-heading mb-8 text-orange-500">
-                  FIND YOUR TRIBE BRO
-                </h2>
-                <p className="text-xl text-gray-300 mb-8">
-                  Get matched with compatible running partners based on your preferences
-                </p>
-                
-                <form onSubmit={handleBuddySubmit} className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-white font-bold mb-2 sigma-heading text-sm">
-                        FULL NAME *
-                      </label>
-                      <Input
-                        type="text"
-                        value={buddyForm.name}
-                        onChange={(e) => setBuddyForm({...buddyForm, name: e.target.value})}
-                        className="sigma-input h-12 text-lg"
-                        placeholder="Your name"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-white font-bold mb-2 sigma-heading text-sm">
-                        EMAIL *
-                      </label>
-                      <Input
-                        type="email"
-                        value={buddyForm.email}
-                        onChange={(e) => setBuddyForm({...buddyForm, email: e.target.value})}
-                        className="sigma-input h-12 text-lg"
-                        placeholder="your@email.com"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-white font-bold mb-2 sigma-heading text-sm">
-                        AGE RANGE
-                      </label>
-                      <select
-                        value={buddyForm.age}
-                        onChange={(e) => setBuddyForm({...buddyForm, age: e.target.value})}
-                        className="sigma-input h-12 text-lg w-full"
-                      >
-                        <option value="">Select age range</option>
-                        <option value="18-25">18-25</option>
-                        <option value="26-35">26-35</option>
-                        <option value="36-45">36-45</option>
-                        <option value="45+">45+</option>
-                      </select>
-                    </div>
-                    
-                    <div>
-                      <label className="block text-white font-bold mb-2 sigma-heading text-sm">
-                        FITNESS LEVEL
-                      </label>
-                      <select
-                        value={buddyForm.fitnessLevel}
-                        onChange={(e) => setBuddyForm({...buddyForm, fitnessLevel: e.target.value})}
-                        className="sigma-input h-12 text-lg w-full"
-                      >
-                        <option value="">Select level</option>
-                        <option value="beginner">BEGINNER</option>
-                        <option value="intermediate">INTERMEDIATE</option>
-                        <option value="advanced">ADVANCED</option>
-                      </select>
-                    </div>
-                  </div>
-
+                  
                   <div>
-                    <label className="block text-white font-bold mb-2 sigma-heading text-sm">
-                      PREFERRED PACE
+                    <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                      EMAIL *
+                    </label>
+                    <Input
+                      type="email"
+                      value={regForm.email}
+                      onChange={(e) => setRegForm({...regForm, email: e.target.value})}
+                      className="sigma-input"
+                      placeholder="your@email.com"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                      PHONE NUMBER *
+                    </label>
+                    <Input
+                      type="tel"
+                      value={regForm.phone}
+                      onChange={(e) => setRegForm({...regForm, phone: e.target.value})}
+                      className="sigma-input"
+                      placeholder="+91 XXXXX XXXXX"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                      FITNESS LEVEL
                     </label>
                     <select
-                      value={buddyForm.preferredPace}
-                      onChange={(e) => setBuddyForm({...buddyForm, preferredPace: e.target.value})}
-                      className="sigma-input h-12 text-lg w-full"
+                      value={regForm.fitnessLevel}
+                      onChange={(e) => setRegForm({...regForm, fitnessLevel: e.target.value})}
+                      className="sigma-input w-full"
                     >
-                      <option value="">Select pace</option>
-                      <option value="slow">SLOW & STEADY</option>
-                      <option value="moderate">MODERATE</option>
-                      <option value="fast">FAST & FURIOUS</option>
+                      <option value="">Select level</option>
+                      <option value="beginner">BEGINNER</option>
+                      <option value="intermediate">INTERMEDIATE</option>
+                      <option value="advanced">ADVANCED</option>
                     </select>
                   </div>
+                </div>
 
+                <div>
+                  <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                    RUNNING GOALS
+                  </label>
+                  <textarea
+                    value={regForm.goals}
+                    onChange={(e) => setRegForm({...regForm, goals: e.target.value})}
+                    className="sigma-input w-full h-20 resize-none"
+                    placeholder="What do you want to achieve?"
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={isLoading}
+                  className="sigma-button w-full px-8 py-3 text-lg"
+                >
+                  {isLoading ? "JOINING..." : "JOIN THE TRIBE! 🚀"}
+                </Button>
+              </form>
+            </div>
+          )}
+
+          {/* Find Tribe Bro Form */}
+          {!isRegistering && (
+            <div className="sigma-card max-w-2xl mx-auto">
+              <h2 className="text-2xl font-bold sigma-heading mb-4 text-orange-500">
+                FIND YOUR TRIBE BRO
+              </h2>
+              <p className="text-gray-300 mb-6">
+                Get matched with compatible running partners
+              </p>
+              
+              <form onSubmit={handleBuddySubmit} className="space-y-4">
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-white font-bold mb-2 sigma-heading text-sm">
-                      INTERESTS & GOALS
+                    <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                      FULL NAME *
                     </label>
-                    <textarea
-                      value={buddyForm.goals}
-                      onChange={(e) => setBuddyForm({...buddyForm, goals: e.target.value})}
-                      className="sigma-input h-24 text-lg w-full resize-none"
-                      placeholder="What are you looking for in a running partner?"
+                    <Input
+                      type="text"
+                      value={buddyForm.name}
+                      onChange={(e) => setBuddyForm({...buddyForm, name: e.target.value})}
+                      className="sigma-input"
+                      placeholder="Your name"
+                      required
                     />
                   </div>
+                  
+                  <div>
+                    <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                      EMAIL *
+                    </label>
+                    <Input
+                      type="email"
+                      value={buddyForm.email}
+                      onChange={(e) => setBuddyForm({...buddyForm, email: e.target.value})}
+                      className="sigma-input"
+                      placeholder="your@email.com"
+                      required
+                    />
+                  </div>
+                </div>
 
-                  <Button
-                    type="submit"
-                    disabled={isLoading}
-                    className="sigma-button text-2xl sm:text-3xl py-12 px-20 w-full"
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                      AGE RANGE
+                    </label>
+                    <select
+                      value={buddyForm.age}
+                      onChange={(e) => setBuddyForm({...buddyForm, age: e.target.value})}
+                      className="sigma-input w-full"
+                    >
+                      <option value="">Select age range</option>
+                      <option value="18-25">18-25</option>
+                      <option value="26-35">26-35</option>
+                      <option value="36-45">36-45</option>
+                      <option value="45+">45+</option>
+                    </select>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                      FITNESS LEVEL
+                    </label>
+                    <select
+                      value={buddyForm.fitnessLevel}
+                      onChange={(e) => setBuddyForm({...buddyForm, fitnessLevel: e.target.value})}
+                      className="sigma-input w-full"
+                    >
+                      <option value="">Select level</option>
+                      <option value="beginner">BEGINNER</option>
+                      <option value="intermediate">INTERMEDIATE</option>
+                      <option value="advanced">ADVANCED</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                    PREFERRED PACE
+                  </label>
+                  <select
+                    value={buddyForm.preferredPace}
+                    onChange={(e) => setBuddyForm({...buddyForm, preferredPace: e.target.value})}
+                    className="sigma-input w-full"
                   >
-                    {isLoading ? "FINDING..." : "FIND MY TRIBE BRO! 🤝"}
-                  </Button>
-                </form>
-              </div>
-            )}
-          </div>
+                    <option value="">Select pace</option>
+                    <option value="slow">SLOW & STEADY</option>
+                    <option value="moderate">MODERATE</option>
+                    <option value="fast">FAST & FURIOUS</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                    INTERESTS & GOALS
+                  </label>
+                  <textarea
+                    value={buddyForm.goals}
+                    onChange={(e) => setBuddyForm({...buddyForm, goals: e.target.value})}
+                    className="sigma-input w-full h-20 resize-none"
+                    placeholder="What are you looking for in a running partner?"
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={isLoading}
+                  className="sigma-button w-full px-8 py-3 text-lg"
+                >
+                  {isLoading ? "FINDING..." : "FIND MY TRIBE BRO! 🤝"}
+                </Button>
+              </form>
+            </div>
+          )}
         </div>
       </section>
 
