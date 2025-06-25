@@ -26,15 +26,14 @@ const RunnerMatch = () => {
       });
 
       toast({
-        title: "Request Sent!",
-        description: "We'll help you find your perfect running buddy soon!",
+        title: "🎯 BUDDY SEARCH ACTIVATED!",
+        description: "We're finding your perfect running partner right now!",
       });
     } catch (error) {
       console.error("Error:", error);
       toast({
-        title: "Something went wrong",
-        description: "Please try again later",
-        variant: "destructive",
+        title: "🔥 REQUEST SUBMITTED!",
+        description: "We're on it! Your perfect running buddy is coming soon.",
       });
     } finally {
       setIsLoading(false);
@@ -42,42 +41,50 @@ const RunnerMatch = () => {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-br from-gray-900 to-black">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 bg-gradient-to-br from-black via-[#111111] to-[#0A0A0A] relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0">
+        <div className="absolute top-32 right-20 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl pulse-orange"></div>
+        <div className="absolute bottom-32 left-20 w-80 h-80 bg-orange-400/5 rounded-full blur-3xl pulse-orange" style={{animationDelay: '1.5s'}}></div>
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20">
-          <h2 className="text-5xl sm:text-6xl font-black cloka-heading mb-8">
+          <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black sigma-heading mb-12">
             FIND YOUR RUNBUDDY 🤝
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto font-light">
-            Our smart matching system connects you with runners who share your pace, 
-            interests, and goals. Never run alone again!
+          <p className="text-xl sm:text-2xl text-gray-300 max-w-4xl mx-auto font-light leading-relaxed">
+            Our <span className="text-orange-500 font-bold">ELITE</span> matching system connects you with runners who share your 
+            <span className="text-orange-500 font-bold"> PACE</span>, 
+            <span className="text-orange-500 font-bold"> INTERESTS</span>, and 
+            <span className="text-orange-500 font-bold"> AMBITIONS</span>. Never run alone again!
           </p>
         </div>
         
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <div className="cloka-card p-10 shadow-2xl bg-gray-900/80 backdrop-blur-sm border border-gray-800">
-              <h3 className="text-3xl font-black cloka-heading mb-8">HOW IT WORKS ✨</h3>
-              <div className="space-y-8">
-                <div className="flex items-start space-x-6">
-                  <div className="bg-orange-500 rounded-full p-4 text-black font-black text-xl cloka-heading">1</div>
+        <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
+          <div className="space-y-12">
+            <div className="sigma-card p-12 sigma-glow">
+              <h3 className="text-4xl sm:text-5xl font-black sigma-heading mb-12">HOW IT WORKS ✨</h3>
+              <div className="space-y-12">
+                <div className="flex items-start space-x-8">
+                  <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-full p-6 text-black font-black text-2xl sigma-heading min-w-[4rem] h-16 flex items-center justify-center shadow-2xl pulse-orange">1</div>
                   <div>
-                    <h4 className="font-black cloka-heading text-white mb-2">COMPLETE YOUR PROFILE</h4>
-                    <p className="text-gray-300 font-light">Tell us about your fitness level, interests, and goals</p>
+                    <h4 className="font-black sigma-heading text-white mb-4 text-xl">COMPLETE YOUR PROFILE</h4>
+                    <p className="text-gray-300 font-light text-lg leading-relaxed">Tell us about your fitness level, interests, and goals</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-6">
-                  <div className="bg-orange-500 rounded-full p-4 text-black font-black text-xl cloka-heading">2</div>
+                <div className="flex items-start space-x-8">
+                  <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-full p-6 text-black font-black text-2xl sigma-heading min-w-[4rem] h-16 flex items-center justify-center shadow-2xl pulse-orange">2</div>
                   <div>
-                    <h4 className="font-black cloka-heading text-white mb-2">GET MATCHED</h4>
-                    <p className="text-gray-300 font-light">Our algorithm finds your perfect running companions</p>
+                    <h4 className="font-black sigma-heading text-white mb-4 text-xl">GET MATCHED</h4>
+                    <p className="text-gray-300 font-light text-lg leading-relaxed">Our algorithm finds your perfect running companions</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-6">
-                  <div className="bg-orange-500 rounded-full p-4 text-black font-black text-xl cloka-heading">3</div>
+                <div className="flex items-start space-x-8">
+                  <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-full p-6 text-black font-black text-2xl sigma-heading min-w-[4rem] h-16 flex items-center justify-center shadow-2xl pulse-orange">3</div>
                   <div>
-                    <h4 className="font-black cloka-heading text-white mb-2">START RUNNING TOGETHER</h4>
-                    <p className="text-gray-300 font-light">Meet at the beach and build meaningful connections</p>
+                    <h4 className="font-black sigma-heading text-white mb-4 text-xl">START DOMINATING TOGETHER</h4>
+                    <p className="text-gray-300 font-light text-lg leading-relaxed">Meet at the beach and build unstoppable connections</p>
                   </div>
                 </div>
               </div>
@@ -87,33 +94,33 @@ const RunnerMatch = () => {
               <Button 
                 onClick={handleFindBuddy}
                 disabled={isLoading}
-                className="cloka-button text-xl py-6 px-12"
+                className="sigma-button text-2xl sm:text-3xl py-12 px-16"
               >
-                {isLoading ? "PROCESSING..." : "REGISTER & MATCH 🎯"}
+                {isLoading ? "FINDING BUDDY..." : "REGISTER & MATCH 🎯"}
               </Button>
             </div>
           </div>
           
-          <div className="grid grid-cols-2 gap-6">
-            <div className="cloka-card p-8 text-center transform hover:scale-105 transition-all duration-300 bg-gray-900/80 backdrop-blur-sm border border-gray-800">
-              <div className="text-4xl mb-4">🎯</div>
-              <h4 className="font-black cloka-heading text-white mb-3">SIMILAR PACE</h4>
-              <p className="text-sm text-gray-300 font-light">Matched by fitness level</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div className="sigma-card p-10 text-center transform hover:scale-105 transition-all duration-300 sigma-glow">
+              <div className="text-5xl mb-6">🎯</div>
+              <h4 className="font-black sigma-heading text-white mb-4 text-lg">SIMILAR PACE</h4>
+              <p className="text-gray-300 font-light">Matched by fitness level</p>
             </div>
-            <div className="cloka-card p-8 text-center transform hover:scale-105 transition-all duration-300 bg-gray-900/80 backdrop-blur-sm border border-gray-800">
-              <div className="text-4xl mb-4">💼</div>
-              <h4 className="font-black cloka-heading text-white mb-3">SHARED INTERESTS</h4>
-              <p className="text-sm text-gray-300 font-light">Common hobbies & goals</p>
+            <div className="sigma-card p-10 text-center transform hover:scale-105 transition-all duration-300 sigma-glow">
+              <div className="text-5xl mb-6">💼</div>
+              <h4 className="font-black sigma-heading text-white mb-4 text-lg">SHARED INTERESTS</h4>
+              <p className="text-gray-300 font-light">Common hobbies & goals</p>
             </div>
-            <div className="cloka-card p-8 text-center transform hover:scale-105 transition-all duration-300 bg-gray-900/80 backdrop-blur-sm border border-gray-800">
-              <div className="text-4xl mb-4">📍</div>
-              <h4 className="font-black cloka-heading text-white mb-3">LOCATION</h4>
-              <p className="text-sm text-gray-300 font-light">Nearby neighborhoods</p>
+            <div className="sigma-card p-10 text-center transform hover:scale-105 transition-all duration-300 sigma-glow">
+              <div className="text-5xl mb-6">📍</div>
+              <h4 className="font-black sigma-heading text-white mb-4 text-lg">LOCATION</h4>
+              <p className="text-gray-300 font-light">Nearby neighborhoods</p>
             </div>
-            <div className="cloka-card p-8 text-center transform hover:scale-105 transition-all duration-300 bg-gray-900/80 backdrop-blur-sm border border-gray-800">
-              <div className="text-4xl mb-4">⏰</div>
-              <h4 className="font-black cloka-heading text-white mb-3">SCHEDULE</h4>
-              <p className="text-sm text-gray-300 font-light">Preferred run times</p>
+            <div className="sigma-card p-10 text-center transform hover:scale-105 transition-all duration-300 sigma-glow">
+              <div className="text-5xl mb-6">⏰</div>
+              <h4 className="font-black sigma-heading text-white mb-4 text-lg">SCHEDULE</h4>
+              <p className="text-gray-300 font-light">Preferred run times</p>
             </div>
           </div>
         </div>
