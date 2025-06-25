@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -25,26 +24,40 @@ const RegistrationForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
+    const payload = {
+      ...formData,
+      form_type: "registration",
+      timestamp: new Date().toISOString()
+    };
+
+    console.log("📤 Sending payload to n8n webhook:", payload);
+
     try {
-      await fetch("https://forzio.app.n8n.cloud/webhook-test/RUNTRIBE", {
+      const response = await fetch("https://forzio.app.n8n.cloud/webhook-test/RUNTRIBE", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          ...formData,
-          form_type: "registration",
-          timestamp: new Date().toISOString()
-        }),
+        body: JSON.stringify(payload),
       });
 
-      toast({
-        title: "🚀 WELCOME TO THE TRIBE!",
-        description: "Your registration is complete! We'll match you with your tribe soon.",
-      });
+      const result = await response.json().catch(() => null);
 
-      // Reset form
+      if (response.ok) {
+        toast({
+          title: "🚀 WELCOME TO THE TRIBE!",
+          description: "Your registration is complete! We'll match you with your tribe soon.",
+        });
+      } else {
+        toast({
+          title: "⚠️ Submission Failed!",
+          description: `Server responded with ${response.status}.`,
+        });
+      }
+
+      console.log("✅ Webhook Response:", result || "No JSON body");
+
       setFormData({
         name: '',
         email: '',
@@ -57,23 +70,10 @@ const RegistrationForm = () => {
         fitnessLevel: ''
       });
     } catch (error) {
-      console.error("Registration error:", error);
+      console.error("❌ Webhook error:", error);
       toast({
-        title: "🔥 REGISTRATION SUBMITTED!",
-        description: "Your details have been captured. Welcome to the tribe!",
-      });
-      
-      // Reset form even on error since the user experience should be positive
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        occupation: '',
-        skills: '',
-        interests: '',
-        location: '',
-        preferredTime: '',
-        fitnessLevel: ''
+        title: "🔥 NETWORK ERROR",
+        description: "Could not reach the server. Please try again later.",
       });
     } finally {
       setIsLoading(false);
@@ -98,7 +98,7 @@ const RegistrationForm = () => {
             Fill out this form and we'll match you with your perfect running squad.
           </p>
         </div>
-        
+
         <div className="max-w-4xl mx-auto">
           <form onSubmit={handleSubmit} className="sigma-card p-8 sm:p-16 shadow-2xl sigma-glow">
             <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-8">
@@ -113,7 +113,7 @@ const RegistrationForm = () => {
                   required
                 />
               </div>
-              
+
               <div className="space-y-4">
                 <Label htmlFor="email" className="text-white font-black sigma-heading text-sm mb-3 block">EMAIL *</Label>
                 <Input 
@@ -126,7 +126,7 @@ const RegistrationForm = () => {
                   required
                 />
               </div>
-              
+
               <div className="space-y-4">
                 <Label htmlFor="phone" className="text-white font-black sigma-heading text-sm mb-3 block">PHONE</Label>
                 <Input 
@@ -137,7 +137,7 @@ const RegistrationForm = () => {
                   placeholder="+91 9876543210"
                 />
               </div>
-              
+
               <div className="space-y-4">
                 <Label htmlFor="occupation" className="text-white font-black sigma-heading text-sm mb-3 block">OCCUPATION</Label>
                 <Input 
@@ -148,7 +148,7 @@ const RegistrationForm = () => {
                   placeholder="Student, Developer, Designer..."
                 />
               </div>
-              
+
               <div className="space-y-4">
                 <Label htmlFor="location" className="text-white font-black sigma-heading text-sm mb-3 block">LOCATION</Label>
                 <Select onValueChange={(value) => setFormData({...formData, location: value})}>
@@ -165,7 +165,7 @@ const RegistrationForm = () => {
                   </SelectContent>
                 </Select>
               </div>
-              
+
               <div className="space-y-4">
                 <Label htmlFor="fitnessLevel" className="text-white font-black sigma-heading text-sm mb-3 block">FITNESS LEVEL</Label>
                 <Select onValueChange={(value) => setFormData({...formData, fitnessLevel: value})}>
@@ -180,7 +180,7 @@ const RegistrationForm = () => {
                 </Select>
               </div>
             </div>
-            
+
             <div className="mt-8 space-y-4">
               <Label htmlFor="skills" className="text-white font-black sigma-heading text-sm mb-3 block">SKILLS/EXPERTISE</Label>
               <Textarea 
@@ -192,7 +192,7 @@ const RegistrationForm = () => {
                 rows={4}
               />
             </div>
-            
+
             <div className="mt-8 space-y-4">
               <Label htmlFor="interests" className="text-white font-black sigma-heading text-sm mb-3 block">INTERESTS/HOBBIES</Label>
               <Textarea 
@@ -204,7 +204,7 @@ const RegistrationForm = () => {
                 rows={4}
               />
             </div>
-            
+
             <div className="mt-16 text-center">
               <Button 
                 type="submit"
