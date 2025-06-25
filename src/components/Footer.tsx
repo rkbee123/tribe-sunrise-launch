@@ -1,18 +1,27 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const Footer = () => {
   return (
-    <footer id="contact" className="bg-black text-white py-20 border-t border-gray-800">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <footer id="contact" className="bg-black text-white py-20 border-t border-gray-800 relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute top-0 left-0 w-72 h-72 bg-orange-500/5 rounded-full blur-3xl opacity-50"></div>
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid md:grid-cols-4 gap-12">
           {/* Logo & Description */}
           <div className="md:col-span-2">
-            <div className="text-4xl font-black cloka-heading bg-gradient-orange bg-clip-text text-transparent mb-6">
-              🏃‍♀️ RUNTRIBE
+            <div className="flex items-center space-x-3 mb-6">
+              <img 
+                src="/logo.png" 
+                alt="RunTribe Logo" 
+                className="h-12 w-12 rounded-lg pulse-orange"
+              />
+              <div className="text-3xl font-black sigma-heading text-gradient-orange">
+                RUNTRIBE
+              </div>
             </div>
-            <p className="text-gray-300 leading-relaxed mb-8 max-w-md font-light">
+            <p className="text-gray-300 leading-relaxed mb-8 max-w-md font-light text-lg">
               Chennai's most energetic running community. Building connections, 
               one Saturday morning at a time.
             </p>
@@ -31,18 +40,18 @@ const Footer = () => {
           
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-black cloka-heading mb-8">QUICK LINKS</h3>
+            <h3 className="text-xl font-black sigma-heading mb-8 text-orange-500">QUICK LINKS</h3>
             <div className="space-y-4">
-              <a href="#about" className="block text-gray-300 hover:text-orange-500 transition-colors font-light">
+              <a href="/" className="block text-gray-300 hover:text-orange-500 transition-colors font-light text-lg">
+                Home
+              </a>
+              <a href="/about" className="block text-gray-300 hover:text-orange-500 transition-colors font-light text-lg">
                 About
               </a>
-              <a href="#meetups" className="block text-gray-300 hover:text-orange-500 transition-colors font-light">
-                Meetups
+              <a href="/join" className="block text-gray-300 hover:text-orange-500 transition-colors font-light text-lg">
+                Join
               </a>
-              <a href="#community" className="block text-gray-300 hover:text-orange-500 transition-colors font-light">
-                Community
-              </a>
-              <a href="#contact" className="block text-gray-300 hover:text-orange-500 transition-colors font-light">
+              <a href="#contact" className="block text-gray-300 hover:text-orange-500 transition-colors font-light text-lg">
                 Contact
               </a>
             </div>
@@ -50,16 +59,16 @@ const Footer = () => {
           
           {/* Newsletter */}
           <div>
-            <h3 className="text-xl font-black cloka-heading mb-8">STAY UPDATED</h3>
+            <h3 className="text-xl font-black sigma-heading mb-8 text-orange-500">STAY UPDATED</h3>
             <p className="text-gray-300 text-sm mb-6 font-light">
               Get weekly updates about runs, events, and community highlights.
             </p>
             <div className="flex">
               <Input 
                 placeholder="Your email" 
-                className="cloka-input rounded-r-none focus:border-orange-500"
+                className="sigma-input rounded-r-none focus:border-orange-500"
               />
-              <Button className="bg-orange-500 hover:bg-orange-600 text-black font-bold rounded-l-none px-6">
+              <Button className="sigma-button rounded-l-none px-6">
                 JOIN
               </Button>
             </div>

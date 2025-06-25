@@ -1,4 +1,3 @@
-
 import { useState, useEffect, createContext, useContext } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
@@ -26,6 +25,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setSession(session);
         setUser(session?.user ?? null);
         setLoading(false);
+
+        // Handle email verification redirect
+        if (event === 'SIGNED_IN' && session?.user?.email_confirmed_at) {
+          window.location.href = "/";
+        }
       }
     );
 
@@ -40,7 +44,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const signUp = async (email: string, password: string, options?: { name?: string }) => {
-    const redirectUrl = `${window.location.origin}/auth?type=signup`;
+    const redirectUrl = `${window.location.origin}/auth/verify`;
     
     const { error } = await supabase.auth.signUp({
       email,

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -24,7 +23,7 @@ const Auth = () => {
 
   // Handle email verification redirect
   useEffect(() => {
-    if (session && user?.email_confirmed_at) {
+    if (session?.user?.email_confirmed_at) {
       navigate("/");
     }
   }, [session, user, navigate]);
@@ -70,7 +69,7 @@ const Auth = () => {
         if (error) throw error;
         
         toast({
-          title: "WELCOME BACK! 🔥",
+          title: "🔥 WELCOME BACK!",
           description: "You're now logged in. Let's get running!",
         });
         
@@ -100,7 +99,7 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-black flex items-center justify-center p-4 relative overflow-hidden tribal-pattern">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -113,13 +112,13 @@ const Auth = () => {
         <Button
           onClick={() => navigate('/')}
           variant="ghost"
-          className="mb-8 text-gray-400 hover:text-orange-500 transition-colors p-2"
+          className="mb-8 text-gray-400 hover:text-orange-500 transition-colors p-2 font-bold uppercase tracking-wider"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
           BACK TO HOME
         </Button>
 
-        <div className="sigma-card p-12 space-y-8 sigma-glow">
+        <div className="sigma-card p-12 space-y-8 sigma-glow animate-fade-up">
           {/* Logo and Title */}
           <div className="text-center space-y-6">
             <img 
@@ -128,7 +127,7 @@ const Auth = () => {
               className="w-20 h-20 mx-auto rounded-2xl shadow-2xl pulse-orange"
             />
             <div>
-              <h1 className="text-4xl sm:text-5xl sigma-heading mb-4">
+              <h1 className="text-4xl sm:text-5xl sigma-heading mb-4 glitch-text" data-text={isLogin ? 'WELCOME BACK' : 'JOIN THE TRIBE'}>
                 {isLogin ? 'WELCOME BACK' : 'JOIN THE TRIBE'}
               </h1>
               <p className="text-gray-400 text-lg font-light">
@@ -144,7 +143,7 @@ const Auth = () => {
           <form onSubmit={handleSubmit} className="space-y-8">
             {!isLogin && (
               <div className="space-y-3">
-                <Label htmlFor="name" className="text-white font-bold uppercase tracking-wider text-sm">
+                <Label htmlFor="name" className="text-white font-black uppercase tracking-wider text-sm">
                   FULL NAME
                 </Label>
                 <Input
@@ -160,7 +159,7 @@ const Auth = () => {
             )}
 
             <div className="space-y-3">
-              <Label htmlFor="email" className="text-white font-bold uppercase tracking-wider text-sm">
+              <Label htmlFor="email" className="text-white font-black uppercase tracking-wider text-sm">
                 EMAIL ADDRESS
               </Label>
               <Input
@@ -175,7 +174,7 @@ const Auth = () => {
             </div>
 
             <div className="space-y-3">
-              <Label htmlFor="password" className="text-white font-bold uppercase tracking-wider text-sm">
+              <Label htmlFor="password" className="text-white font-black uppercase tracking-wider text-sm">
                 PASSWORD
               </Label>
               <div className="relative">
@@ -205,21 +204,21 @@ const Auth = () => {
             >
               {isLoading 
                 ? (isLogin ? "SIGNING IN..." : "JOINING TRIBE...") 
-                : (isLogin ? "SIGN IN 🚀" : "JOIN RUNTRIBE 🔥")
+                : (isLogin ? "🚀 SIGN IN" : "🔥 JOIN RUNTRIBE")
               }
             </Button>
           </form>
 
           {/* Toggle */}
           <div className="text-center pt-6 border-t border-gray-800">
-            <p className="text-gray-400 mb-4">
+            <p className="text-gray-400 mb-4 font-light">
               {isLogin ? "New to RunTribe?" : "Already part of the tribe?"}
             </p>
             <Button
               type="button"
               variant="ghost"
               onClick={() => setIsLogin(!isLogin)}
-              className="text-orange-500 hover:text-orange-400 font-bold uppercase tracking-wider hover:bg-orange-500/10 transition-all duration-300"
+              className="text-orange-500 hover:text-orange-400 font-black uppercase tracking-wider hover:bg-orange-500/10 transition-all duration-300"
             >
               {isLogin ? "CREATE ACCOUNT" : "SIGN IN"}
             </Button>
@@ -227,7 +226,7 @@ const Auth = () => {
         </div>
 
         {/* Footer note */}
-        <p className="text-center text-gray-500 mt-8 text-sm">
+        <p className="text-center text-gray-500 mt-8 text-sm font-light">
           By joining, you agree to our terms and conditions
         </p>
       </div>

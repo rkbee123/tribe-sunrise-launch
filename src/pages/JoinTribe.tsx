@@ -64,8 +64,8 @@ const JoinTribe = () => {
     } catch (error) {
       console.error("Registration error:", error);
       toast({
-        title: "Registration Received!",
-        description: "We've got your details and will be in touch soon.",
+        title: "🔥 You're in! See you Saturday.",
+        description: "Check your WhatsApp for details.",
       });
     } finally {
       setIsLoading(false);
@@ -106,7 +106,7 @@ const JoinTribe = () => {
     } catch (error) {
       console.error("Find buddy error:", error);
       toast({
-        title: "Buddy Search Submitted!",
+        title: "🔥 Buddy Search Submitted!",
         description: "We'll find you the perfect running partner.",
       });
     } finally {
@@ -115,97 +115,103 @@ const JoinTribe = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black tribal-pattern">
       <Header />
       
-      <section className="min-h-screen flex items-center justify-center bg-black">
-        <div className="text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto py-20">
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold sigma-heading mb-12 leading-tight">
+      <section id="join-form" className="min-h-screen flex items-center justify-center bg-black relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-orange-400/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        </div>
+
+        <div className="text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto py-20 relative z-10">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black sigma-heading mb-12 leading-tight glitch-text animate-fade-up" data-text="JOIN THE TRIBE">
             JOIN.<br/>
-            <span className="text-orange-500">THE TRIBE.</span>
+            <span className="text-gradient-orange">THE TRIBE.</span>
           </h1>
           
           {/* Toggle Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-12 max-w-lg mx-auto">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 max-w-lg mx-auto animate-fade-up-delay">
             <Button
               onClick={() => setIsRegistering(true)}
-              className={`sigma-button px-6 py-2 text-base w-full sm:w-auto ${
-                isRegistering ? 'opacity-100' : 'opacity-60 hover:opacity-80'
-              }`}
+              className={`sigma-button px-8 py-4 text-lg w-full sm:w-auto ${
+                isRegistering ? 'opacity-100 scale-105' : 'opacity-60 hover:opacity-80'
+              } transition-all duration-300`}
             >
-              JOIN TRIBE 🚀
+              🚀 JOIN TRIBE
             </Button>
             <Button
               onClick={() => setIsRegistering(false)}
-              className={`sigma-button px-6 py-2 text-base w-full sm:w-auto ${
-                !isRegistering ? 'opacity-100' : 'opacity-60 hover:opacity-80'
-              }`}
+              className={`sigma-button px-8 py-4 text-lg w-full sm:w-auto ${
+                !isRegistering ? 'opacity-100 scale-105' : 'opacity-60 hover:opacity-80'
+              } transition-all duration-300`}
             >
-              FIND TRIBE BRO 🤝
+              🤝 FIND MY BUDDY
             </Button>
           </div>
 
           {/* Registration Form */}
           {isRegistering && (
-            <div className="sigma-card max-w-2xl mx-auto">
-              <h2 className="text-2xl font-bold sigma-heading mb-6 text-orange-500">
+            <div className="sigma-card max-w-2xl mx-auto sigma-glow animate-fade-up-delay-2">
+              <h2 className="text-3xl font-black sigma-heading mb-6 text-gradient-orange">
                 BECOME A TRIBE MEMBER
               </h2>
               
-              <form onSubmit={handleRegistrationSubmit} className="space-y-4">
-                <div className="grid sm:grid-cols-2 gap-4">
+              <form onSubmit={handleRegistrationSubmit} className="space-y-6">
+                <div className="grid sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                    <label className="block text-white font-black mb-2 sigma-heading text-sm">
                       FULL NAME *
                     </label>
                     <Input
                       type="text"
                       value={regForm.name}
                       onChange={(e) => setRegForm({...regForm, name: e.target.value})}
-                      className="sigma-input"
+                      className="sigma-input h-12"
                       placeholder="Your name"
                       required
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                    <label className="block text-white font-black mb-2 sigma-heading text-sm">
                       EMAIL *
                     </label>
                     <Input
                       type="email"
                       value={regForm.email}
                       onChange={(e) => setRegForm({...regForm, email: e.target.value})}
-                      className="sigma-input"
+                      className="sigma-input h-12"
                       placeholder="your@email.com"
                       required
                     />
                   </div>
                 </div>
 
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                    <label className="block text-white font-black mb-2 sigma-heading text-sm">
                       PHONE NUMBER *
                     </label>
                     <Input
                       type="tel"
                       value={regForm.phone}
                       onChange={(e) => setRegForm({...regForm, phone: e.target.value})}
-                      className="sigma-input"
+                      className="sigma-input h-12"
                       placeholder="+91 XXXXX XXXXX"
                       required
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                    <label className="block text-white font-black mb-2 sigma-heading text-sm">
                       FITNESS LEVEL
                     </label>
                     <select
                       value={regForm.fitnessLevel}
                       onChange={(e) => setRegForm({...regForm, fitnessLevel: e.target.value})}
-                      className="sigma-input w-full"
+                      className="sigma-input w-full h-12"
                     >
                       <option value="">Select level</option>
                       <option value="beginner">BEGINNER</option>
@@ -216,13 +222,13 @@ const JoinTribe = () => {
                 </div>
 
                 <div>
-                  <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                  <label className="block text-white font-black mb-2 sigma-heading text-sm">
                     RUNNING GOALS
                   </label>
                   <textarea
                     value={regForm.goals}
                     onChange={(e) => setRegForm({...regForm, goals: e.target.value})}
-                    className="sigma-input w-full h-20 resize-none"
+                    className="sigma-input w-full h-24 resize-none"
                     placeholder="What do you want to achieve?"
                   />
                 </div>
@@ -230,9 +236,9 @@ const JoinTribe = () => {
                 <Button
                   type="submit"
                   disabled={isLoading}
-                  className="sigma-button w-full px-8 py-3 text-lg"
+                  className="sigma-button w-full px-8 py-6 text-xl"
                 >
-                  {isLoading ? "JOINING..." : "JOIN THE TRIBE! 🚀"}
+                  {isLoading ? "JOINING..." : "🚀 JOIN THE TRIBE!"}
                 </Button>
               </form>
             </div>
@@ -240,54 +246,54 @@ const JoinTribe = () => {
 
           {/* Find Tribe Bro Form */}
           {!isRegistering && (
-            <div className="sigma-card max-w-2xl mx-auto">
-              <h2 className="text-2xl font-bold sigma-heading mb-4 text-orange-500">
+            <div className="sigma-card max-w-2xl mx-auto sigma-glow animate-fade-up-delay-2">
+              <h2 className="text-3xl font-black sigma-heading mb-4 text-gradient-orange">
                 FIND YOUR TRIBE BRO
               </h2>
-              <p className="text-gray-300 mb-6">
+              <p className="text-gray-300 mb-8 text-lg font-light">
                 Get matched with compatible running partners
               </p>
               
-              <form onSubmit={handleBuddySubmit} className="space-y-4">
-                <div className="grid sm:grid-cols-2 gap-4">
+              <form onSubmit={handleBuddySubmit} className="space-y-6">
+                <div className="grid sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                    <label className="block text-white font-black mb-2 sigma-heading text-sm">
                       FULL NAME *
                     </label>
                     <Input
                       type="text"
                       value={buddyForm.name}
                       onChange={(e) => setBuddyForm({...buddyForm, name: e.target.value})}
-                      className="sigma-input"
+                      className="sigma-input h-12"
                       placeholder="Your name"
                       required
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                    <label className="block text-white font-black mb-2 sigma-heading text-sm">
                       EMAIL *
                     </label>
                     <Input
                       type="email"
                       value={buddyForm.email}
                       onChange={(e) => setBuddyForm({...buddyForm, email: e.target.value})}
-                      className="sigma-input"
+                      className="sigma-input h-12"
                       placeholder="your@email.com"
                       required
                     />
                   </div>
                 </div>
 
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                    <label className="block text-white font-black mb-2 sigma-heading text-sm">
                       AGE RANGE
                     </label>
                     <select
                       value={buddyForm.age}
                       onChange={(e) => setBuddyForm({...buddyForm, age: e.target.value})}
-                      className="sigma-input w-full"
+                      className="sigma-input w-full h-12"
                     >
                       <option value="">Select age range</option>
                       <option value="18-25">18-25</option>
@@ -298,13 +304,13 @@ const JoinTribe = () => {
                   </div>
                   
                   <div>
-                    <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                    <label className="block text-white font-black mb-2 sigma-heading text-sm">
                       FITNESS LEVEL
                     </label>
                     <select
                       value={buddyForm.fitnessLevel}
                       onChange={(e) => setBuddyForm({...buddyForm, fitnessLevel: e.target.value})}
-                      className="sigma-input w-full"
+                      className="sigma-input w-full h-12"
                     >
                       <option value="">Select level</option>
                       <option value="beginner">BEGINNER</option>
@@ -315,13 +321,13 @@ const JoinTribe = () => {
                 </div>
 
                 <div>
-                  <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                  <label className="block text-white font-black mb-2 sigma-heading text-sm">
                     PREFERRED PACE
                   </label>
                   <select
                     value={buddyForm.preferredPace}
                     onChange={(e) => setBuddyForm({...buddyForm, preferredPace: e.target.value})}
-                    className="sigma-input w-full"
+                    className="sigma-input w-full h-12"
                   >
                     <option value="">Select pace</option>
                     <option value="slow">SLOW & STEADY</option>
@@ -331,13 +337,13 @@ const JoinTribe = () => {
                 </div>
 
                 <div>
-                  <label className="block text-white font-semibold mb-1 sigma-heading text-sm">
+                  <label className="block text-white font-black mb-2 sigma-heading text-sm">
                     INTERESTS & GOALS
                   </label>
                   <textarea
                     value={buddyForm.goals}
                     onChange={(e) => setBuddyForm({...buddyForm, goals: e.target.value})}
-                    className="sigma-input w-full h-20 resize-none"
+                    className="sigma-input w-full h-24 resize-none"
                     placeholder="What are you looking for in a running partner?"
                   />
                 </div>
@@ -345,9 +351,9 @@ const JoinTribe = () => {
                 <Button
                   type="submit"
                   disabled={isLoading}
-                  className="sigma-button w-full px-8 py-3 text-lg"
+                  className="sigma-button w-full px-8 py-6 text-xl"
                 >
-                  {isLoading ? "FINDING..." : "FIND MY TRIBE BRO! 🤝"}
+                  {isLoading ? "FINDING..." : "🤝 FIND MY TRIBE BRO!"}
                 </Button>
               </form>
             </div>
