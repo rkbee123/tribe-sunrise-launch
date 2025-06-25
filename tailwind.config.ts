@@ -19,6 +19,9 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				inter: ['Inter', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -63,38 +66,14 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// RunTribe custom colors
-				coral: {
-					50: '#fef7f3',
-					100: '#fdeee6',
-					200: '#fbdacb',
-					300: '#f7bfa3',
-					400: '#f19a72',
-					500: '#ea7a4b',
-					600: '#dc5f2f',
-					700: '#b84a25',
-					800: '#933f26',
-					900: '#773621',
-				},
-				ocean: {
-					50: '#f0fdf9',
-					100: '#ccfdf1',
-					200: '#99fae4',
-					300: '#5ef0d3',
-					400: '#2dd4bf',
-					500: '#14b8a6',
-					600: '#0d9488',
-					700: '#0f766e',
-					800: '#115e59',
-					900: '#134e4a',
-				},
-				sunrise: {
+				// Cloka-style custom colors
+				orange: {
 					50: '#fff7ed',
 					100: '#ffedd5',
 					200: '#fed7aa',
 					300: '#fdba74',
 					400: '#fb923c',
-					500: '#f97316',
+					500: '#FF6B00',
 					600: '#ea580c',
 					700: '#c2410c',
 					800: '#9a3412',
@@ -158,9 +137,8 @@ export default {
 				'pulse-soft': 'pulse-soft 2s ease-in-out infinite'
 			},
 			backgroundImage: {
-				'gradient-sunrise': 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)',
-				'gradient-ocean': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-				'gradient-coral': 'linear-gradient(135deg, #ff8a80 0%, #ff7043 100%)',
+				'gradient-cloka': 'linear-gradient(135deg, #000000 0%, #111111 100%)',
+				'gradient-orange': 'linear-gradient(135deg, #FF6B00 0%, #ea580c 100%)',
 			}
 		}
 	},

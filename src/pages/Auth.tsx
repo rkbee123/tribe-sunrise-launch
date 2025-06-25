@@ -14,7 +14,7 @@ const Auth = () => {
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
   
-  const { signUp, signIn, user } = useAuth();
+  const { signUp, signIn, user, session } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -22,14 +22,23 @@ const Auth = () => {
   // Check if this is a redirect from email verification
   useEffect(() => {
     const type = searchParams.get('type');
-    if (type === 'signup') {
-      // User clicked the verification link, redirect to success page
-      navigate('/success');
+    if (type === 'signup' && session && user?.email_confirmed_at) {
+      navigate('/');
+    } else if (type === 'signup') {
+      // User clicked the verification link, redirect to login
+      navigate('/auth');
     }
-  }, [searchParams, navigate]);
+  }, [searchParams, navigate, session, user]);
+
+  // Additional check for session changes
+  useEffect(() => {
+    if (session && user?.email_confirmed_at) {
+      navigate('/');
+    }
+  }, [session, user, navigate]);
 
   // Redirect if already logged in
-  if (user) {
+  if (user && user.email_confirmed_at) {
     navigate('/');
     return null;
   }
@@ -51,7 +60,7 @@ const Auth = () => {
           return;
         }
         
-        // Set redirect URL to auth page with success parameter
+        // Set redirect URL to auth page
         const redirectUrl = `${window.location.origin}/auth?type=signup`;
         
         ({ error } = await signUp(email, password, name));
@@ -91,59 +100,59 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 flex items-center justify-center p-4">
-      <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-8 w-full max-w-md shadow-2xl border border-white/20">
-        <div className="text-center mb-8">
+    <div className="min-h-screen bg-gradient-cloka flex items-center justify-center p-4">
+      <div className="cloka-card p-12 w-full max-w-md shadow-2xl border border-gray-800 bg-gray-900/95 backdrop-blur-xl">
+        <div className="text-center mb-12">
           <img 
-            src="/images/runtribe-logo.png" 
+            src="/logo.png" 
             alt="RunTribe Logo" 
-            className="h-16 w-16 mx-auto mb-4 rounded-2xl"
+            className="h-16 w-16 mx-auto mb-6 rounded-2xl"
           />
-          <h1 className="text-3xl font-black bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent mb-2">
-            {isSignUp ? "Join RunTribe" : "Welcome Back"}
+          <h1 className="text-4xl font-black cloka-heading bg-gradient-orange bg-clip-text text-transparent mb-3">
+            {isSignUp ? "JOIN RUNTRIBE" : "WELCOME BACK"}
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-300 font-light">
             {isSignUp ? "Ready to start your running journey?" : "Let's get back to running!"}
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-8">
           {isSignUp && (
             <div>
-              <Label htmlFor="name" className="text-gray-700 font-semibold">Full Name *</Label>
+              <Label htmlFor="name" className="text-white font-bold cloka-heading text-sm mb-3 block">FULL NAME *</Label>
               <Input
                 id="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Enter your full name"
-                className="mt-2 border-gray-300 focus:border-orange-500 focus:ring-orange-500 rounded-xl"
+                className="cloka-input h-12"
                 required
               />
             </div>
           )}
           
           <div>
-            <Label htmlFor="email" className="text-gray-700 font-semibold">Email Address *</Label>
+            <Label htmlFor="email" className="text-white font-bold cloka-heading text-sm mb-3 block">EMAIL ADDRESS *</Label>
             <Input
               id="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your.email@example.com"
-              className="mt-2 border-gray-300 focus:border-orange-500 focus:ring-orange-500 rounded-xl"
+              className="cloka-input h-12"
               required
             />
           </div>
           
           <div>
-            <Label htmlFor="password" className="text-gray-700 font-semibold">Password *</Label>
+            <Label htmlFor="password" className="text-white font-bold cloka-heading text-sm mb-3 block">PASSWORD *</Label>
             <Input
               id="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter a secure password"
-              className="mt-2 border-gray-300 focus:border-orange-500 focus:ring-orange-500 rounded-xl"
+              className="cloka-input h-12"
               required
             />
           </div>
@@ -151,16 +160,16 @@ const Auth = () => {
           <Button
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold py-4 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            className="w-full cloka-button text-lg py-6"
           >
-            {loading ? "Please wait..." : isSignUp ? "Create Account" : "Sign In"}
+            {loading ? "PLEASE WAIT..." : isSignUp ? "CREATE ACCOUNT" : "SIGN IN"}
           </Button>
         </form>
         
-        <div className="mt-6 text-center">
+        <div className="mt-8 text-center">
           <button
             onClick={() => setIsSignUp(!isSignUp)}
-            className="text-orange-500 hover:text-orange-600 font-semibold transition-colors"
+            className="text-orange-500 hover:text-orange-400 font-bold transition-colors"
           >
             {isSignUp ? "Already have an account? Sign in" : "New to RunTribe? Create account"}
           </button>
